@@ -1,9 +1,11 @@
 const UploadModel = require("../models/upload.model");
 
-async function createUpload(req, res) {
+function createUpload(req, res) {
 	const imagePath = req.file?.filename;
 
-	const imageUpload = await new UploadModel({
+	console.log(req.file);
+
+	const imageUpload = new UploadModel({
 		imagePath,
 	});
 
