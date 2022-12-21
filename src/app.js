@@ -9,7 +9,10 @@ const uploadRouter = require("./routers/upload.router");
 //db connection
 db.dbConnect();
 //set api
-app.use("/uploads", express.static(path.resolve(__dirname, "..", "uploads")));
+app.use(
+	"/uploads",
+	express.static(path.resolve(__dirname, "../..", "uploads"))
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //routers
