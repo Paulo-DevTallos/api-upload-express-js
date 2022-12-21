@@ -1,7 +1,6 @@
+const { createUpload } = require("../useCases/upload.controller");
 const router = require("./index");
 
-router.get("/", (req, res) => {
-	res.send("testando rota get");
-});
+router.get("/", createUpload);
 
 module.exports = router;
