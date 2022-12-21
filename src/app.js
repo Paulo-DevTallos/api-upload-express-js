@@ -1,12 +1,13 @@
 require("dotenv").config();
 const express = require("express");
+const db = require("./db");
 const app = express();
 
+//db connection
+db.dbConnect();
 //set api
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("testando");
-});
+//
 
 module.exports = app;
