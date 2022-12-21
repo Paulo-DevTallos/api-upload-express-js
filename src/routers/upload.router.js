@@ -1,19 +1,8 @@
 const router = require("./index");
-const { createUpload } = require("../useCases/upload.controller");
-const multer = require("multer");
-const path = require("path");
+const { getImages, createUpload } = require("../useCases/upload.controller");
+const upload = require("../middlewares/upload_middleware");
 
-const upload = multer({
-	storage: multer.diskStorage({
-		destination(req, file, callback) {
-			callback(null, path.resolve(__dirname, "../..", "uploads"));
-		},
-		filename(req, file, callback) {
-			callback(null, `${Date.now()}-${file.originalname}`);
-		},
-	}),
-});
-
+router.get("/upload", getImages);
 router.post("/upload", upload.single("image"), createUpload);
 
 module.exports = router;
