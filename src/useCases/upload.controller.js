@@ -1,4 +1,5 @@
 const UploadModel = require("../models/upload.model");
+const { HttpStatusCode, SuccessStatus } = require("../../constants/config");
 
 async function getImages(req, res) {
 	const uploadList = await UploadModel.find();
@@ -6,7 +7,7 @@ async function getImages(req, res) {
 	res.json({ message: "success", uploadList }).status(200);
 }
 
-function createUpload(req, res) {
+async function createUpload(req, res) {
 	const imagePath = req.file?.filename;
 
 	const imageUpload = new UploadModel({
@@ -14,7 +15,10 @@ function createUpload(req, res) {
 	});
 
 	imageUpload.save();
-	res.json({ imageUpload });
+	res.status(HttpStatusCode.CREATED).json({
+		imageUpload,
+		response_message: SuccessStatus.CREATED_RESOURCE.CREATED.message,
+	});
 }
 
 module.exports = {
