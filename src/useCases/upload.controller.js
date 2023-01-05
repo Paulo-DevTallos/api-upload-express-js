@@ -17,7 +17,7 @@ async function createUpload(req, res) {
 	imageUpload.save();
 	res.status(HttpStatusCode.CREATED).json({
 		imageUpload,
-		response_message: SuccessStatus.CREATED_RESOURCE.CREATED.message,
+		response_message: SuccessStatus.CREATED_RESOURCE.message,
 	});
 }
 
